@@ -10,18 +10,19 @@ app.use(express.json());
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
-.then(()=> console.log("MongoDB Connected"))
+.then(() => console.log("MongoDB Connected"))
 .catch(err => console.log(err));
 
-// connect routes
+// API routes
 app.use("/books", bookRoutes);
 
-app.get("/", (req,res)=>{
+// Root route
+app.get("/", (req, res) => {
   res.send("Library Management API Running");
 });
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
